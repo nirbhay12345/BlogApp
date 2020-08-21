@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const expreSantizer = require('express-sanitizer');
+var Blog = require('./models/blogs');
 
 // DATABASE CONNECT MONGOOSE
 mongoose.connect('mongodb://localhost:27017/blog_app', {
@@ -19,15 +20,6 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.use(expreSantizer());
-
-// MONGOOSE / MODEL CONFIG
-var blogSchema = new mongoose.Schema({
-  title: String,
-  image: String,
-  body: String,
-  created: {type: Date, default: Date.now}
-});
-var Blog = mongoose.model('Blog', blogSchema);
 
 // RESTFUL ROUTES
 

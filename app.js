@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const expreSantizer = require('express-sanitizer');
 var Blog = require('./models/blogs');
+var User = require('./models/user');
 
 // DATABASE CONNECT MONGOOSE
 mongoose.connect('mongodb://localhost:27017/blog_app', {

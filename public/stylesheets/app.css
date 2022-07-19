@@ -1,16 +1,16 @@
-i.icon.outline{
-  font-size:2.5em;
+i.icon.outline {
+  font-size: 2.5em;
 }
 
-.container.main{
+.container.main {
   margin-top: 7.0em;
 }
 
-#delete{
+#delete {
   display: inline;
 }
 
 #login_form {
-  width:300px;
-  margin-top: 500px;
+  width: 300px;
+  margin-top: 150px;
 }

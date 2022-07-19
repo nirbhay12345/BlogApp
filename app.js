@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const expreSantizer = require('express-sanitizer');
 var Blog = require('./models/blogs');
-var User = require('./models/user');
 
 // DATABASE CONNECT MONGOOSE
 mongoose.connect('mongodb://localhost:27017/blog_app', {
@@ -25,12 +24,12 @@ app.use(expreSantizer());
 // RESTFUL ROUTES
 
 //HOME ROUTE
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.redirect('/blogs');
 });
 
 // INDEX ROUTE
-app.get('/blogs', (req, res) => {
+app.get('/blogs', (_req, res) => {
   Blog.find({}, (err, obj) => {
     if(!err){
       res.render('index', {blogs: obj});
@@ -41,7 +40,7 @@ app.get('/blogs', (req, res) => {
 });
 
 // NEW ROUTE
-app.get('/blogs/new', (req, res) => {
+app.get('/blogs/new', (_req, res) => {
   res.render('new');
 });
 
@@ -52,7 +51,7 @@ app.post('/blogs', (req, res) => {
   req.body.blog.image = req.sanitize(req.body.blog.image);
   req.body.blog.body = req.sanitize(req.body.blog.body);
   //create a blog
-  Blog.create(req.body.blog, (err, obj) => {
+  Blog.create(req.body.blog, (err, _obj) => {
     //redirect
     if (!err) {
       res.redirect('/blogs');
@@ -89,7 +88,7 @@ app.put('/blogs/:id', (req, res) => {
   req.body.blog.title = req.sanitize(req.body.blog.title);
   req.body.blog.image = req.sanitize(req.body.blog.image);
   req.body.blog.body = req.sanitize(req.body.blog.body);
-  Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, obj) => {
+  Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, _obj) => {
     if (err) {
       res.redirect('/blogs');
     }else {
@@ -100,17 +99,13 @@ app.put('/blogs/:id', (req, res) => {
 
 // DELETE ROUTE
 app.delete('/blogs/:id', (req, res) => {
-  Blog.findByIdAndRemove(req.params.id, (err, obj) => {
+  Blog.findByIdAndRemove(req.params.id, (err, _obj) => {
     if (err) {
       res.redirect('/blogs');
     }else {
       res.redirect('/blogs');
     }
   });
-});
-
-app.get('/login', (req, res) => {
-  res.render('./auth/login');
 });
 
 app.listen(3000, () => {

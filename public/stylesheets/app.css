@@ -9,3 +9,8 @@ i.icon.outline{
 #delete{
   display: inline;
 }
+
+#login_form {
+  width:300px;
+  margin-top: 500px;
+}

@@ -109,6 +109,9 @@ app.delete('/blogs/:id', (req, res) => {
   });
 });
 
+app.get('/login', (req, res) => {
+  res.render('./auth/login');
+});
 
 app.listen(3000, () => {
   console.log('Server has started....');
